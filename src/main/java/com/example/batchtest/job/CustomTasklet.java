@@ -11,13 +11,17 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 public class CustomTasklet implements Tasklet, StepExecutionListener {
+
+    public int a = 0;
 
     @Override
     @BeforeStep
     public void beforeStep(StepExecution stepExecution) {
-        log.info("======================= Crawling 시작 =======================");
+        log.info("======================= Crawling 시작 ======================= : " + LocalDateTime.now());
     }
 
     @Override
@@ -31,6 +35,9 @@ public class CustomTasklet implements Tasklet, StepExecutionListener {
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
         log.info("배치중");
+
+        log.info(String.valueOf(a++));
+
         return RepeatStatus.FINISHED;
     }
 }
