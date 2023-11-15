@@ -24,7 +24,8 @@ public class BatchScheduler {
     @Autowired
     private SimpleTestCrawling simpleTestCrawling;
 
-    @Scheduled(cron = "0/2 * * * * *") // 매일 오후 12시20분, 오후 6시20분 실행
+//    @Scheduled(cron = "* 20 12,18 * * * *") // 매일 오후 12시20분, 오후 6시20분 실행
+    @Scheduled(cron = "0/2 * * * * *")
     public void runJob() {
 
         Map<String, JobParameter> confMap = new HashMap<>();
